@@ -45,9 +45,9 @@ def boundary(text):
 @app.post('/apiv3/')
 async def api3(item: Details):
     if(not item.challenge):
-        return "please input challenge"
-    elif(not item.challenge == "nlp3"):
-        return  """input challenge again, must be "nlp3" """
+        return "xin nhap challenge"
+    if(not item.challenge == "nlp3"):
+        return "nhap lai challenge, nlp3 moi dung"
     result , message = boundary(item.text)
     if not result:
         return JSONResponse(content = message)
