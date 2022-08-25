@@ -14,10 +14,12 @@ app = FastAPI()
 async def index():
     return {'message': "This is the home page of this API. Go to /apiv1/ or /apiv2/?name="}
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Extra
 class Details(BaseModel):
     challenge: str = "nlp3"
-    text: str
+    text: str = ""
+    class Config:
+        extra = 'ignore'
 
 
 
