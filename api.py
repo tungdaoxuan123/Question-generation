@@ -16,7 +16,7 @@ async def index():
 
 from pydantic import BaseModel, Extra
 class Details(BaseModel):
-    challenge: str = "nlp3"
+    challenge: str = ""
     text: str = ""
     class Config:
         extra = 'ignore'
@@ -44,7 +44,10 @@ def boundary(text):
 
 @app.post('/apiv3/')
 async def api3(item: Details):
-
+    if(not item.challenge):
+        return "please input challenge"
+    elif(not item.challenge == "nlp3"):
+        return  """input challenge again, must be "nlp3" """
     result , message = boundary(item.text)
     if not result:
         return JSONResponse(content = message)
